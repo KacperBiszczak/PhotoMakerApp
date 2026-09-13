@@ -1,0 +1,168 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 6px);
+  --radius-md: calc(var(--radius) - 3px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 6px);
+  --radius-2xl: calc(var(--radius) + 12px);
+  --radius-3xl: calc(var(--radius) + 20px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ink: var(--ink);
+  --color-sand: var(--sand);
+  --font-serif: "Cormorant Garamond", Georgia, serif;
+  --font-sans: "Jost", ui-sans-serif, system-ui, sans-serif;
+  --shadow-soft: 0 1px 2px oklch(0.3 0.02 60 / 4%), 0 12px 32px -12px oklch(0.3 0.02 60 / 12%);
+  --shadow-lift: 0 2px 6px oklch(0.3 0.02 60 / 6%), 0 24px 60px -20px oklch(0.3 0.02 60 / 18%);
+}
+
+:root {
+  --radius: 1rem;
+  --background: oklch(0.985 0.006 84);
+  --foreground: oklch(0.26 0.014 62);
+  --ink: oklch(0.22 0.012 62);
+  --sand: oklch(0.945 0.012 82);
+  --card: oklch(0.995 0.004 84);
+  --card-foreground: oklch(0.26 0.014 62);
+  --popover: oklch(0.995 0.004 84);
+  --popover-foreground: oklch(0.26 0.014 62);
+  --primary: oklch(0.53 0.075 44);
+  --primary-foreground: oklch(0.99 0.005 84);
+  --secondary: oklch(0.945 0.012 82);
+  --secondary-foreground: oklch(0.3 0.015 62);
+  --muted: oklch(0.955 0.009 84);
+  --muted-foreground: oklch(0.55 0.014 66);
+  --accent: oklch(0.93 0.016 78);
+  --accent-foreground: oklch(0.3 0.015 62);
+  --destructive: oklch(0.53 0.14 25);
+  --destructive-foreground: oklch(0.99 0.005 84);
+  --border: oklch(0.9 0.01 80);
+  --input: oklch(0.9 0.01 80);
+  --ring: oklch(0.53 0.075 44);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-serif);
+    font-weight: 400;
+  }
+}
+
+@utility label-xs {
+  font-size: 0.6875rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+@utility btn-base {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 999px;
+  font-size: 0.9375rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition:
+    transform 0.25s ease,
+    background-color 0.25s ease,
+    color 0.25s ease,
+    opacity 0.25s ease;
+  &:active {
+    transform: scale(0.975);
+  }
+  &:disabled {
+    opacity: 0.5;
+  }
+}
+
+@utility btn-primary {
+  @apply btn-base;
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+  padding: 1.125rem 2rem;
+  box-shadow: var(--shadow-soft);
+  &:hover:not(:disabled) {
+    background-color: oklch(0.47 0.08 44);
+  }
+}
+
+@utility btn-quiet {
+  @apply btn-base;
+  background-color: transparent;
+  color: var(--foreground);
+  border: 1px solid var(--border);
+  padding: 1rem 1.75rem;
+  &:hover:not(:disabled) {
+    background-color: var(--secondary);
+  }
+}
+
+@utility fade-up {
+  animation: fade-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@utility pop-in {
+  animation: pop-in 0.6s cubic-bezier(0.22, 1.4, 0.36, 1) both;
+}
+
+@keyframes pop-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.7);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
